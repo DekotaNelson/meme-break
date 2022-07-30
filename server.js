@@ -49,6 +49,10 @@ app.put('/addonelike', (request, response) => {
 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+//Ensure DB connection then listen for requests
+connectDB().then(() => {
+    console.log("db connected");
+    app.listen(process.env.PORT, () => {
+        console.log("Server is running, you better catch it!");
+    })
+  })
